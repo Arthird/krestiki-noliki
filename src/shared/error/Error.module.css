@@ -1,0 +1,39 @@
+.errorContainer {
+  background: var(--color-error);
+  width: 100%;
+  padding: 0.6rem;
+  border-radius: 0.8rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+
+  opacity: 0;
+  transform: translateY(-5px);
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+}
+
+.errorText {
+  color: var(--color-on-error);
+  display: flex;
+  align-items: center;
+}
+
+.errorText::before {
+  content: "❌";
+  font-size: 1rem;
+}
+
+.visibleError {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.hiddenError {
+  opacity: 0;
+  transform: translateY(-5px);
+  pointer-events: none;
+}

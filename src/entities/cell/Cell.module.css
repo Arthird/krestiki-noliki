@@ -1,0 +1,15 @@
+.cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-style: solid;
+  width: 100%;
+  background-color: var(--color-secondary);
+  aspect-ratio: 1;
+  border-color: var(--color-stroke);
+  color: var(--color-on-secondary);
+}
+
+.cell:hover {
+  opacity: 0.9;
+}
