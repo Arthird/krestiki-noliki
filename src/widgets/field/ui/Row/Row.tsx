@@ -1,8 +1,8 @@
 import { memo, useCallback } from "react";
-import Cell from "../../entities/cell/Cell";
-import type { RowModel } from "./RowModel";
 import styles from "./Row.module.css";
 import clsx from "clsx";
+import Cell from "../../../../entities/cell/Cell";
+import type { RowModel } from "../../model/RowModel";
 
 type RowProps = {
   row: RowModel;
