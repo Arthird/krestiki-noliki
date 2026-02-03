@@ -1,8 +1,8 @@
-import { memo } from "react";
-import Row from "../../features/row/Row";
-import type { RowModel } from "../../features/row/RowModel";
-import styles from "./Field.module.css";
 import clsx from "clsx";
+import { memo } from "react";
+import Row from "../../../features/row/Row";
+import type { RowModel } from "../../../features/row/RowModel";
+import styles from "./Field.module.css";
 
 type FieldProps = {
   rows: RowModel[];

@@ -9,6 +9,7 @@ export default function App() {
         ["", "", ""],
         ["", "", ""],
       ]}
+      countToWin={3}
     />
   );
 }

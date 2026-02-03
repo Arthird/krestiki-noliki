@@ -1,15 +1,7 @@
-import type { CellValue } from "../../entities/cell/CellValue";
-import type { FieldMatrix } from "./FieldMatrix";
+import type { CellValue } from "../../../entities/cell/CellValue";
+import type { FieldMatrix } from "../model";
 import { getCellValue } from "./getCellValue";
-
-function setCellValue(
-  matrix: FieldMatrix,
-  rowIndex: number,
-  cellIndex: number,
-  value: CellValue,
-): void {
-  matrix[rowIndex][cellIndex] = value;
-}
+import { setCellValue } from "./setCellValue";
 
 export function makeMove(
   matrix: FieldMatrix,
@@ -27,7 +19,7 @@ export function makeMove(
     throw Error("Обращение к индексу больше допустимого максимума");
   }
   if (getCellValue(matrix, rowIndex, cellIndex)) {
-    throw Error("Нельзя изменять значения непустых полей")
+    throw Error("Нельзя изменять значения непустых полей");
   }
-  setCellValue(matrix, rowIndex, cellIndex, value)
+  setCellValue(matrix, rowIndex, cellIndex, value);
 }

@@ -1,22 +1,28 @@
 import { useReducer, useRef, useState } from "react";
-import Field from "../../widgets/field/Field";
-import type { FieldMatrix } from "../../widgets/field/FieldMatrix";
 import styles from "./KrestikiNoliki.module.css";
 import clsx from "clsx";
 import type { CellValue } from "../../entities/cell/CellValue";
-import { makeMove } from "../../widgets/field/makeMove";
+import { makeMove } from "../../widgets/field/api/makeMove";
 import ErrorMessage from "../../shared/error/Error";
+import {
+  type FieldMatrix,
+  Field,
+  findLongestSeries,
+} from "../../widgets/field";
 
 type KrestikiNolikiProps = {
   initialRows: FieldMatrix;
   acceptableCellValues: CellValue[];
+  countToWin: number;
 };
 
 export default function KrestikiNoliki({
   initialRows,
   acceptableCellValues,
+  countToWin,
 }: KrestikiNolikiProps) {
   const [errorMessage, setErrorMessage] = useState<string>();
+  const [winner, setWinner] = useState<string>();
   const rowsRef = useRef<FieldMatrix>(initialRows.map((row) => [...row]));
 
   const [currentTurn, updateCurrentTurn] = useReducer(
@@ -33,6 +39,15 @@ export default function KrestikiNoliki({
   ) => {
     try {
       makeMove(rowsRef.current, rowIndex, cellIndex, value);
+      const longestSeries = findLongestSeries(
+        rowsRef.current,
+        rowIndex,
+        cellIndex,
+      );
+      if (longestSeries.length >= countToWin) {
+        setWinner(value);
+      }
+      updateCurrentTurn();
       setErrorMessage("");
       forceUpdate();
     } catch (error: unknown) {
@@ -46,7 +61,6 @@ export default function KrestikiNoliki({
   const toggleCellValue = (rowIndex: number, cellIndex: number) => {
     const value = acceptableCellValues[currentTurn];
     updateCell(rowIndex, cellIndex, value);
-    updateCurrentTurn();
   };
 
   const handleCellClick = (rowIndex: number, cellIndex: number) => {
@@ -71,7 +85,10 @@ export default function KrestikiNoliki({
           />
         </div>
 
-        <ErrorMessage visible={!!errorMessage}>{errorMessage}</ErrorMessage>
+        <div className={styles.error}>
+          <ErrorMessage visible={!!errorMessage}>{errorMessage}</ErrorMessage>
+        </div>
+        {!!winner && <h2>Победил: {winner} </h2>}
       </div>
     </main>
   );
