@@ -13,3 +13,7 @@
 .cell:hover {
   opacity: 0.9;
 }
+
+.winning{
+  background-color: var(--color-win);
+}

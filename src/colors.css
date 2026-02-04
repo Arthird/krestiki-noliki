@@ -17,6 +17,8 @@
 
   --color-error: #792036;
   --color-on-error: #d45083;
+
+  --color-win: #54af6f;
 }
 
 @media (prefers-color-scheme: dark) {

@@ -1,15 +1,17 @@
-import KrestikiNoliki from "./pages/krestikiNoliki/krestikiNoliki";
+import KrestikiNoliki from "./pages/krestikiNoliki/KrestikiNoliki";
 
 export default function App() {
   return (
     <KrestikiNoliki
-      acceptableCellValues={["X", "0"]}
+      acceptableCellValues={["X", "0",]}
       initialRows={[
-        ["", "", ""],
-        ["", "", ""],
-        ["", "", ""],
+        ["", "", "", "", ""],
+        ["", "", "", "", ""],
+        ["", "", "", "", ""],
+        ["", "", "", "", ""],
+        ["", "", "", "", ""],
       ]}
-      countToWin={3}
+      countToWin={4}
     />
   );
 }

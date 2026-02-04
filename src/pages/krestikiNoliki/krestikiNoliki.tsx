@@ -4,6 +4,7 @@ import clsx from "clsx";
 import type { CellValue } from "../../entities/cell/CellValue";
 import { makeMove } from "../../widgets/field/api/makeMove";
 import ErrorMessage from "../../shared/error/Error";
+import { getCellValue } from '../../widgets/field/api/getCellValue';
 import {
   type FieldMatrix,
   Field,
@@ -23,7 +24,8 @@ export default function KrestikiNoliki({
 }: KrestikiNolikiProps) {
   const [errorMessage, setErrorMessage] = useState<string>();
   const [winner, setWinner] = useState<string>();
-  const rowsRef = useRef<FieldMatrix>(initialRows.map((row) => [...row]));
+  const [winningSeries, setWinningSeries] = useState<[number, number][]>([]);
+  const matrixRef = useRef<FieldMatrix>(initialRows.map((row) => [...row]));
 
   const [currentTurn, updateCurrentTurn] = useReducer(
     (index) => (index + 1) % acceptableCellValues.length,
@@ -32,21 +34,26 @@ export default function KrestikiNoliki({
 
   const [, forceUpdate] = useReducer((x) => x + 1, 0);
 
-  const updateCell = (
-    rowIndex: number,
-    cellIndex: number,
-    value: CellValue,
-  ) => {
+  const handleWin = (winningSeries: [number, number][]) => {
+    setWinningSeries(winningSeries)
+    setWinner(getCellValue(matrixRef.current, ...winningSeries[0]))
+  }
+
+  const toggleCellValue = (rowIndex: number, cellIndex: number) => {
+    const value = acceptableCellValues[currentTurn];
+
     try {
-      makeMove(rowsRef.current, rowIndex, cellIndex, value);
+      makeMove(matrixRef.current, rowIndex, cellIndex, value);
       const longestSeries = findLongestSeries(
-        rowsRef.current,
+        matrixRef.current,
         rowIndex,
         cellIndex,
       );
+
       if (longestSeries.length >= countToWin) {
-        setWinner(value);
+        handleWin(longestSeries)
       }
+
       updateCurrentTurn();
       setErrorMessage("");
       forceUpdate();
@@ -58,13 +65,15 @@ export default function KrestikiNoliki({
     }
   };
 
-  const toggleCellValue = (rowIndex: number, cellIndex: number) => {
-    const value = acceptableCellValues[currentTurn];
-    updateCell(rowIndex, cellIndex, value);
-  };
-
   const handleCellClick = (rowIndex: number, cellIndex: number) => {
     toggleCellValue(rowIndex, cellIndex);
+  };
+
+  const handleReset = () => {
+    setWinner("");
+    setWinningSeries([])
+    matrixRef.current.forEach((row) => row.fill(""));
+    forceUpdate();
   };
 
   return (
@@ -79,16 +88,20 @@ export default function KrestikiNoliki({
         <div className={clsx(styles.gameContainer)}>
           <Field
             // eslint-disable-next-line react-hooks/refs
-            rows={rowsRef.current}
+            matrix={matrixRef.current}
             onCellClick={handleCellClick}
             matrixClassName={styles.matrix}
+            winningSeries={winningSeries}
           />
+          <button className={styles.resetBtn} onClick={handleReset}>
+            Перезапустить игру
+          </button>
         </div>
-
         <div className={styles.error}>
           <ErrorMessage visible={!!errorMessage}>{errorMessage}</ErrorMessage>
         </div>
-        {!!winner && <h2>Победил: {winner} </h2>}
+        {!!winner && <h2>Победил: {winner} </h2>}{" "}
+        {/*//TODO Сделать попап  с предложением начать заново*/}
       </div>
     </main>
   );
