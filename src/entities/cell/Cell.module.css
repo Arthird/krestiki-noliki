@@ -3,17 +3,24 @@
   justify-content: center;
   align-items: center;
   border-style: solid;
+  aspect-ratio: 1;
   width: 100%;
   background-color: var(--color-secondary);
-  aspect-ratio: 1;
   border-color: var(--color-stroke);
   color: var(--color-on-secondary);
+  container-type: inline-size;
+}
+
+.insideText {
+  font-size: 32cqi;
+  text-align: center;
+  overflow: hidden;
 }
 
 .cell:hover {
   opacity: 0.9;
 }
 
-.winning{
+.winning {
   background-color: var(--color-win);
 }

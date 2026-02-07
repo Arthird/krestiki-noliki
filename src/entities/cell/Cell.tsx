@@ -27,7 +27,9 @@ const Cell = memo(function Cell({
 
   return (
     <button type="button" onClick={handleClick} className={cellClassName}>
-      {value}
+      <span className={styles.insideText}>
+        {value}
+      </span>
     </button>
   );
 });

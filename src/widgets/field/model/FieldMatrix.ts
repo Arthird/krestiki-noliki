@@ -1,3 +1,3 @@
-import type { RowModel } from "../../../features/row/RowModel";
+import type { RowModel } from "../model/RowModel";
 
 export type FieldMatrix = RowModel[];

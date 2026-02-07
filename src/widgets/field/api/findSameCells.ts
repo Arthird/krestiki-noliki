@@ -1,9 +1,7 @@
-import {
-  getCellValue,
-  type CheckingDirection,
-  type Direction,
-  type FieldMatrix,
-} from "..";
+import { getCellValue } from "./getCellValue";
+import { type CheckingDirection } from "../model/CheckingDirection";
+import { type Direction } from "../model/Direction";
+import { type FieldMatrix } from "../model/FieldMatrix";
 
 export function findSameCells(
   dir: CheckingDirection,
