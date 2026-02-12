@@ -3,6 +3,7 @@ import type { CellValue } from "../../entities/cell/CellValue";
 import ErrorMessage from "../../shared/error/Error";
 import { Field } from "../../widgets/field";
 import { useKrestikiNoliki } from "./useKrestikiNoliki";
+import WinnerPopup from "../../widgets/winnerPopup/WinnerPopup";
 
 type KrestikiNolikiProps = {
   height: number;
@@ -11,7 +12,12 @@ type KrestikiNolikiProps = {
   countToWin: number;
 };
 
-export default function KrestikiNoliki(props: KrestikiNolikiProps) {
+export default function KrestikiNoliki({
+  height,
+  width,
+  acceptableCellValues,
+  countToWin,
+}: KrestikiNolikiProps) {
   const {
     matrix,
     errorMessage,
@@ -20,7 +26,7 @@ export default function KrestikiNoliki(props: KrestikiNolikiProps) {
     winningSeries,
     handleCellClick,
     resetGame,
-  } = useKrestikiNoliki(props);
+  } = useKrestikiNoliki({ height, width, acceptableCellValues, countToWin });
 
   return (
     <main>
@@ -42,15 +48,20 @@ export default function KrestikiNoliki(props: KrestikiNolikiProps) {
         </div>
 
         <button className={styles.resetBtn} onClick={resetGame}>
-          Перезапустить игру
+          Начать игру заново
         </button>
 
-        <div className={styles.error}>
-          <ErrorMessage visible={!!errorMessage}>{errorMessage}</ErrorMessage>
-        </div>
+        <ErrorMessage visible={!!errorMessage} className={styles.error}>
+          {errorMessage}
+        </ErrorMessage>
 
-        {!!winner && <h2>Победитель: {winner}</h2>}
-        {isDraw && <h2>Ничья!</h2>}
+        <WinnerPopup
+          winner={winner}
+          resetGame={resetGame}
+          createGame={() => {
+            console.error("TODO переход на экран создания игры"); //TODO переход на экран создания игры
+          }}
+        />
       </div>
     </main>
   );

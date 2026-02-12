@@ -82,6 +82,10 @@ export function useKrestikiNoliki({
     const value = acceptableCellValues[currentTurn];
 
     try {
+      if (isDraw || !!winner) {
+        throw Error("Нельзя делать ходы после окончания игры");
+      }
+
       makeMove(matrixRef.current, rowIndex, cellIndex, value);
       setErrorMessage("");
 
@@ -100,9 +104,7 @@ export function useKrestikiNoliki({
     }
   };
 
-  // eslint-disable-next-line react-hooks/refs
   return {
-    // eslint-disable-next-line react-hooks/refs
     matrix: matrixRef.current,
     errorMessage,
     winner,
