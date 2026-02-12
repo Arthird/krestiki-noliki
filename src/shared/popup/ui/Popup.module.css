@@ -1,0 +1,63 @@
+.dialog {
+  width: 90%;
+  max-width: 50rem;
+
+  display: flex;
+  flex-direction: column;
+
+  margin: auto;
+  border: 1rem solid transparent;
+  border-radius: var(--border-radius-default);
+
+  background-color: var(--color-primary);
+  color: var(--color-on-primary)
+}
+
+.dialog:not([open]) {
+  display: none;
+}
+
+.dialog::backdrop {
+  background-color: var(--color-backdrop);
+}
+
+.actionMenu {
+  margin-top: 0.35rem;
+  display: flex;
+  gap: 0.6rem;
+}
+
+.actionMenu > li::marker {
+  content: none;
+}
+.actionMenu > li {
+  display: flex;
+  flex: 1;
+}
+
+.dividingLine {
+  border-color: var(--color-secondary);
+  margin-top: 0.35rem;
+}
+
+.actionMenu > li > button {
+  background-color: var(--color-secondary);
+  color: var(--color-on-secondary);
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+
+  border: 0.4rem solid transparent;
+
+  display: flex;
+  flex: 1;
+}
+
+.actionMenu > li:last-child > button {
+  color: var(--color-on-cancel);
+  background-color: var(--color-cancel);
+  border-bottom-right-radius: 0.75rem;
+}
+.actionMenu > li:first-child > button {
+  border-bottom-left-radius: 0.75rem;
+}

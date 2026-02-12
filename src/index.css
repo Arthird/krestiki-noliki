@@ -1,4 +1,5 @@
-@import "./colors.css";
+@import "./shared/styles/colors.css";
+@import "./shared/styles/default-sizes.css";
 
 *,
 *::before,
@@ -16,6 +17,35 @@ body,
 }
 
 :root {
-  color: var(--color-text);
+  color: var(--color-on-background);
   background-color: var(--color-background);
+}
+
+hr {
+  border-style: solid;
+}
+
+button {
+  all: unset;
+  display: inline-block;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+button:focus {
+  outline: none;
+}
+
+@font-face {
+  font-family: "RubikMonoOne";
+  src:
+    local("RubikMonoOne"),
+    url("./assets/fonts/RubikMonoOne.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
 }

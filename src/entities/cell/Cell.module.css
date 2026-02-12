@@ -9,10 +9,12 @@
   border-color: var(--color-stroke);
   color: var(--color-on-secondary);
   container-type: inline-size;
+  
 }
 
 .insideText {
   font-size: 32cqi;
+  font-family: 'RubikMonoOne', Tahoma, Geneva, Verdana, sans-serif;
   text-align: center;
   overflow: hidden;
 }

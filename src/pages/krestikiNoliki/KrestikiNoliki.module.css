@@ -1,12 +1,24 @@
+@media (min-width: 641px) {
+  .mainContainer {
+    margin: 0 1rem;
+  }
+}
+@media (max-width: 641px) {
+  .mainContainer {
+    margin: 0 0.5rem;
+  }
+}
+
 main {
   height: 100%;
   display: flex;
   justify-content: center;
+  background-color: var(--color-background);
 }
 
 h1,
 p {
-  color: var(--color-primary);
+  color: var(--color-on-background);
   margin-bottom: 0.5rem;
 }
 
@@ -14,11 +26,15 @@ hr {
   border-color: var(--color-primary);
 }
 
+.mainContainer {
+  display: flex;
+  flex-direction: column;
+}
+
 .gameContainer {
   background-color: var(--color-surface);
-  border-width: 1rem;
-  border-radius: 1rem;
-  padding: 2rem;
+  border: var(--border-width-default) solid transparent;
+  border-radius: var(--border-radius-default);
 }
 
 .matrix {
@@ -27,5 +43,5 @@ hr {
 }
 
 .error {
-  margin: 0.5rem;
+  max-height: max-content;
 }
