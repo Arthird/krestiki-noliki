@@ -25,7 +25,7 @@ export function useKrestikiNoliki({
   const [movesCount, setMovesCount] = useState(0);
 
   const matrixRef = useRef<FieldMatrix>(
-    createRectangularArray(width, height, ""),
+    createRectangularArray(width, height, "")
   );
 
   const workerRef = useRef<Worker | null>(null);

@@ -5,8 +5,7 @@ export function setCellValue(
   matrix: FieldMatrix,
   rowIndex: number,
   cellIndex: number,
-  value: CellValue,
+  value: CellValue
 ): void {
   matrix[rowIndex][cellIndex] = value;
 }
-

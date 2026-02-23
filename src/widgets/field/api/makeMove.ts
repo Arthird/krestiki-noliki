@@ -7,7 +7,7 @@ export function makeMove(
   matrix: FieldMatrix,
   rowIndex: number,
   cellIndex: number,
-  value: CellValue,
+  value: CellValue
 ): void {
   if (rowIndex < 0 || cellIndex < 0) {
     throw Error("Обращение к неотрицательному индексу");

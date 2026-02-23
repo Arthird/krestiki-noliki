@@ -1,4 +1,4 @@
-import { memo, useCallback} from "react";
+import { memo, useCallback } from "react";
 import type { CellValue } from "./CellValue";
 import styles from "./Cell.module.css";
 import clsx from "clsx";
@@ -22,14 +22,12 @@ const Cell = memo(function Cell({
   const cellClassName = clsx(
     styles.cell,
     isWinning && styles.winning,
-    className,
+    className
   );
 
   return (
     <button type="button" onClick={handleClick} className={cellClassName}>
-      <span className={styles.insideText}>
-        {value}
-      </span>
+      <span className={styles.insideText}>{value}</span>
     </button>
   );
 });

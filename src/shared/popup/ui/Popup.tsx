@@ -34,7 +34,7 @@ export default function Popup({
   return (
     <dialog ref={dialogRef} className={clsx(styles.dialog, className)}>
       {children}
-      <hr className={ styles.dividingLine} />
+      <hr className={styles.dividingLine} />
       <menu className={styles.actionMenu}>
         {actions.map((action, index) => {
           return (

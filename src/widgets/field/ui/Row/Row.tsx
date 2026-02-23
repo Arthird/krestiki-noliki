@@ -23,12 +23,12 @@ const Row = memo(function Row({
 }: RowProps) {
   const handleCellClick = useCallback(
     (cellIndex: number) => onCellClick(rowIndex, cellIndex),
-    [onCellClick, rowIndex],
+    [onCellClick, rowIndex]
   );
 
   const rowClassname = useMemo(
     () => clsx(styles.row, rowClassName),
-    [rowClassName],
+    [rowClassName]
   );
 
   return (

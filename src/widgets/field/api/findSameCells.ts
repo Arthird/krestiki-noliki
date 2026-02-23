@@ -7,7 +7,7 @@ export function findSameCells(
   dir: CheckingDirection,
   matrix: FieldMatrix,
   rowIndex: number,
-  cellIndex: number,
+  cellIndex: number
 ): [number, number][] {
   const map = new Map<Direction, [number, number]>([
     ["right", [0, 1]],
@@ -35,7 +35,7 @@ export function findSameCells(
   function findInDirection(
     direction: Direction,
     rowIndex: number,
-    cellIndex: number,
+    cellIndex: number
   ): [number, number][] {
     const [relNextRowIndex, relNextColIndex] = map.get(direction)!;
     const result: [number, number][] = [];
