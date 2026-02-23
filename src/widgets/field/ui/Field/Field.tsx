@@ -8,9 +8,9 @@ type FieldProps = {
   matrix: RowModel[];
   onCellClick: (rowIndex: number, cellIndex: number) => void;
   winningSeries: [number, number][];
-  rowClassName?: CSSModuleClasses | string;
-  matrixClassName?: CSSModuleClasses | string;
-  cellClassName?: CSSModuleClasses | string;
+  rowClassName?: string;
+  matrixClassName?: string;
+  cellClassName?: string;
 };
 
 const Field = memo(function Field({

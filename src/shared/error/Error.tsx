@@ -5,7 +5,7 @@ import { useState } from "react";
 type ErrorProps = {
   children: React.ReactNode;
   visible: boolean;
-  className?: CSSModuleClasses | string;
+  className?: string;
 };
 
 export default function Error({ children, visible, className }: ErrorProps) {
@@ -20,7 +20,7 @@ export default function Error({ children, visible, className }: ErrorProps) {
       className={clsx(
         styles.errorContainer,
         visible ? styles.visibleError : styles.hiddenError,
-        className
+        className,
       )}
     >
       <span className={styles.errorText}>{lastChildren}</span>

@@ -28,20 +28,19 @@ export default function KrestikiNoliki() {
   } = useKrestikiNoliki({ height, width, acceptableCellValues, countToWin });
   const navigate = useNavigate();
 
-  const createGame = () => {
-    navigate("/")
+  const newGame = () => {
+    navigate("/");
   };
 
   return (
     <main>
       <div className={styles.mainContainer}>
-        <h1>Крестики нолики</h1>
+        <h1>Крестики нолики</h1> {/*// TODO Заменить на хедер*/}
         <hr />
         <p>
           Это игра где игроки играют и один из них выигрывает, но не всегда —
           иногда ничья. Лично я обычно выигрываю, но насчёт вас не знаю 😄
         </p>
-
         <div className={styles.gameContainer}>
           <Field
             matrix={matrix}
@@ -50,25 +49,18 @@ export default function KrestikiNoliki() {
             winningSeries={winningSeries}
           />
         </div>
-
-        <button className={styles.resetBtn} onClick={resetGame}>
-          Начать игру заново
-        </button>
-
+        <div className={styles.actionsContainer} data-error={!!errorMessage}>
+          <button onClick={resetGame}>Начать игру заново</button>
+          <button onClick={newGame}>Настроить новую игру</button>
+        </div>
         <ErrorMessage visible={!!errorMessage} className={styles.error}>
           {errorMessage}
         </ErrorMessage>
-
-        <DrawPopup
-          isDraw={isDraw}
-          resetGame={resetGame}
-          createGame={createGame}
-        />
-
+        <DrawPopup isDraw={isDraw} resetGame={resetGame} createGame={newGame} />
         <WinnerPopup
           winner={winner}
           resetGame={resetGame}
-          createGame={createGame}
+          createGame={newGame}
         />
       </div>
     </main>

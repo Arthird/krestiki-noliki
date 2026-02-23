@@ -1,4 +1,4 @@
-                            import type { PopupAction } from "../../shared/popup/model/PopupAction";
+import type { PopupAction } from "../../shared/popup/model/PopupAction";
 import Popup from "../../shared/popup/ui/Popup";
 
 type WinnerPopupProps = {

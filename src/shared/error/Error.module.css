@@ -1,8 +1,10 @@
 .errorContainer {
   background: var(--color-error);
   max-width: 100%;
-  padding: 0.6rem;
   border-radius: var(--border-radius-default);
+  border-width: var(--border-width-default);
+  border-style: solid;
+  border-color: transparent;
 
   display: flex;
   flex: 1;
@@ -12,8 +14,8 @@
   opacity: 0;
   transform: translateY(-5px);
   transition:
-    opacity 0.3s ease,
-    transform 0.3s ease;
+    opacity var(--animation-time-short) ease,
+    transform var(--animation-time-short) ease;
 }
 
 .errorText {

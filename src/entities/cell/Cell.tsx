@@ -8,7 +8,7 @@ type CellProps = {
   index: number;
   onClick: (index: number) => void;
   isWinning: boolean;
-  className?: CSSModuleClasses | string;
+  className?: string;
 };
 
 const Cell = memo(function Cell({

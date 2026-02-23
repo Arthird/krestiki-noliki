@@ -9,8 +9,8 @@ type RowProps = {
   onCellClick: (rowIndex: number, cellIndex: number) => void;
   rowIndex: number;
   winningIndexes: Set<number>;
-  rowClassName?: CSSModuleClasses | string;
-  cellClassName?: CSSModuleClasses | string;
+  rowClassName?: string;
+  cellClassName?: string;
 };
 
 const Row = memo(function Row({

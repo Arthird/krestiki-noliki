@@ -56,8 +56,8 @@
 .actionMenu > li:last-child > button {
   color: var(--color-on-cancel);
   background-color: var(--color-cancel);
-  border-bottom-right-radius: 0.75rem;
+  border-bottom-right-radius: calc(var(--border-radius-default) * 0.75);
 }
 .actionMenu > li:first-child > button {
-  border-bottom-left-radius: 0.75rem;
+  border-bottom-left-radius: calc(var(--border-radius-default) * 0.75);
 }

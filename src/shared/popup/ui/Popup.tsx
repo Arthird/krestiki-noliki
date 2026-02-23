@@ -7,7 +7,7 @@ type PopupPrpos = {
   children: React.ReactNode;
   actions: PopupAction[];
   isOpen: boolean;
-  className?: CSSModuleClasses | string;
+  className?: string;
 };
 
 export default function Popup({
