@@ -4,6 +4,8 @@ import ErrorMessage from "../../shared/error/Error";
 import { Field } from "../../widgets/field";
 import { useKrestikiNoliki } from "./useKrestikiNoliki";
 import WinnerPopup from "../../widgets/winnerPopup/WinnerPopup";
+import DrawPopup from "../../widgets/drawPopup/DrawPopup";
+import { useLoaderData, useNavigate } from "react-router-dom";
 
 type KrestikiNolikiProps = {
   height: number;
@@ -12,12 +14,9 @@ type KrestikiNolikiProps = {
   countToWin: number;
 };
 
-export default function KrestikiNoliki({
-  height,
-  width,
-  acceptableCellValues,
-  countToWin,
-}: KrestikiNolikiProps) {
+export default function KrestikiNoliki() {
+  const { height, width, acceptableCellValues, countToWin } =
+    useLoaderData() as KrestikiNolikiProps;
   const {
     matrix,
     errorMessage,
@@ -27,6 +26,11 @@ export default function KrestikiNoliki({
     handleCellClick,
     resetGame,
   } = useKrestikiNoliki({ height, width, acceptableCellValues, countToWin });
+  const navigate = useNavigate();
+
+  const createGame = () => {
+    navigate("/")
+  };
 
   return (
     <main>
@@ -55,12 +59,16 @@ export default function KrestikiNoliki({
           {errorMessage}
         </ErrorMessage>
 
+        <DrawPopup
+          isDraw={isDraw}
+          resetGame={resetGame}
+          createGame={createGame}
+        />
+
         <WinnerPopup
           winner={winner}
           resetGame={resetGame}
-          createGame={() => {
-            console.error("TODO переход на экран создания игры"); //TODO переход на экран создания игры
-          }}
+          createGame={createGame}
         />
       </div>
     </main>

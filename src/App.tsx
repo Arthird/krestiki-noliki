@@ -1,12 +1,29 @@
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import CreateNewGame from "./pages/createNewGame/CreateNewGame";
 import KrestikiNoliki from "./pages/krestikiNoliki/KrestikiNoliki";
 
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <CreateNewGame />,
+  },
+  {
+    path: "/game",
+    element: <KrestikiNoliki />,
+    loader: async ({ request }) => {
+      const url = new URL(request.url);
+      const height = parseInt(url.searchParams.get("height") || "3");
+      const width = parseInt(url.searchParams.get("width") || "3");
+      const countToWin = parseInt(url.searchParams.get("countToWin") || "3");
+      const acceptableCellValues = url.searchParams
+        .get("values")
+        ?.split(",") || ["X", "O"];
+
+      return { height, width, acceptableCellValues, countToWin };
+    },
+  },
+]);
+
 export default function App() {
-  return (
-    <KrestikiNoliki
-      acceptableCellValues={["X", "0",]}
-      height={5}
-      width={5}
-      countToWin={4}
-    />
-  );
+  return <RouterProvider router={router} />;
 }
