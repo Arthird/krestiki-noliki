@@ -19,6 +19,7 @@ body,
 :root {
   color: var(--color-on-background);
   background-color: var(--color-background);
+  font-family: 'Inter', sans-serif;
 }
 
 hr {
@@ -48,4 +49,11 @@ button:focus {
   font-weight: 400;
   font-style: normal;
   font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('./assets/fonts/Inter.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
 }
