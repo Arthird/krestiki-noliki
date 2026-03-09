@@ -1,6 +1,7 @@
 import styles from "./KrestikiNoliki.module.css";
 import type { CellValue } from "../../entities/cell/CellValue";
 import ErrorMessage from "../../shared/error/Error";
+import { ActionsContainer } from "../../shared/actionsContainer";
 import { Field } from "../../widgets/field";
 import { useKrestikiNoliki } from "./useKrestikiNoliki";
 import WinnerPopup from "../../widgets/winnerPopup/WinnerPopup";
@@ -35,7 +36,7 @@ export default function KrestikiNoliki() {
 
   return (
     <main>
-      <h1>Игра</h1> {/*// TODO Заменить на хедер*/}
+      <h1>Игра</h1>
       <hr />
       <p className={styles.gameDescription}>
         В этой вариации игры правила такие:
@@ -55,13 +56,13 @@ export default function KrestikiNoliki() {
           winningSeries={winningSeries}
         />
       </div>
-      {/*// TODO Вынести в отдельный компонет, посмотреть, можно 
-           // TODO ли объединить этот actionContainer с тем, что в попапе*/}
-      <div className={styles.actionsContainer} data-error={!!errorMessage}>
-        {/*Надо сделать пропсом*/}
-        <button onClick={resetGame}>Начать игру заново</button>
-        <button onClick={newGame}>Настроить новую игру</button>
-      </div>
+      <ActionsContainer
+        actions={[
+          { label: "Начать игру заново", onClick: resetGame },
+          { label: "Настроить новую игру", onClick: newGame },
+        ]}
+        hasError={!!errorMessage}
+      />
       <ErrorMessage visible={!!errorMessage} className={styles.error}>
         {errorMessage}
       </ErrorMessage>

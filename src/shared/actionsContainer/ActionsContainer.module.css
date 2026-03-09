@@ -1,0 +1,34 @@
+.actionsContainer {
+  display: flex;
+  gap: var(--gap-default);
+  margin-bottom: var(--margin-bottom-default);
+}
+
+.actionsContainer > button {
+  background-color: var(--color-primary);
+
+  border-width: var(--border-width-default);
+  border-style: solid;
+  border-color: transparent;
+
+  color: var(--color-on-primary);
+
+  display: flex;
+  flex: 1;
+
+  transition: border-radius var(--animation-time-short) ease;
+}
+
+.actionsContainer > button:last-child {
+  border-bottom-right-radius: var(--border-radius-default);
+  justify-content: left;
+}
+
+.actionsContainer > button:first-child {
+  border-bottom-left-radius: var(--border-radius-default);
+  justify-content: right;
+}
+
+.actionsContainer:is([data-error="true"]) > button {
+  border-radius: 0;
+}
