@@ -70,6 +70,8 @@ main > hr {
 .nameInput {
   display: flex;
   gap: var(--gap-default);
+  white-space: nowrap; 
+  align-items: center;
 }
 
 .nameInputLast {
