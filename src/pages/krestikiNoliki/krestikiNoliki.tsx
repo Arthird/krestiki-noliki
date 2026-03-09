@@ -17,7 +17,7 @@ type KrestikiNolikiLoaderData = {
 export default function KrestikiNoliki() {
   const { height, width, names, countToWin } =
     useLoaderData() as KrestikiNolikiLoaderData;
-  
+
   const {
     matrix,
     errorMessage,
@@ -35,11 +35,17 @@ export default function KrestikiNoliki() {
 
   return (
     <main>
-      <h1>Крестики нолики</h1> {/*// TODO Заменить на хедер*/}
+      <h1>Игра</h1> {/*// TODO Заменить на хедер*/}
       <hr />
       <p className={styles.gameDescription}>
-        Это игра где игроки играют и один из них выигрывает, но не всегда —
-        иногда ничья. Лично я обычно выигрываю, но насчёт вас не знаю 😄
+        В этой вариации игры правила такие:
+        <br />
+        {names.length} игроков (
+        {names.map((name, i) => `${name}${i === names.length - 1 ? "" : ", "}`)}
+        ) ходят по очереди, ставя свой знак в любую пустую клетку. Цель — первым
+        собрать {countToWin} своих знака в ряд: по горизонтали, по вертикали,
+        или по диагонали. Если все клетки заполнены и никто не собрал ряд из{" "}
+        {countToWin} — ничья.
       </p>
       <div className={styles.gameContainer}>
         <Field

@@ -1,41 +1,35 @@
 import { useNavigate } from "react-router-dom";
 import styles from "./CreateNewGame.module.css";
 import { useState } from "react";
-
-type FormData = {
-  height: string;
-  width: string;
-  countToWin: string;
-  names: string;
-};
+import clsx from "clsx";
 
 export default function CreateNewGame() {
-  const [formData, setFormData] = useState<FormData>({
-    height: "3",
-    width: "3",
-    countToWin: "3",
-    names: "X,O",
-  });
+  const [height, setHeight] = useState("3");
+  const [width, setWidth] = useState("3");
+  const [countToWin, setCountToWin] = useState("3");
+  const [names, setNames] = useState(["X", "O", ""]);
 
   const navigate = useNavigate();
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+  const handleNameChange = (index: number, value: string) => {
+    const namesCopy = [...names];
+    namesCopy[index] = value;
+    if (index === names.length - 1 && value.trim() !== "") {
+      namesCopy.push("");
+    } else if (index < names.length - 1 && value.trim() === "") {
+      namesCopy.splice(index, 1);
+    }
+    setNames(namesCopy);
   };
 
   const handleSubmit = (e: React.SubmitEvent) => {
     e.preventDefault();
 
     const searchParams = new URLSearchParams({
-      height: formData.height,
-      width: formData.width,
-      names: formData.names,
-      countToWin: formData.countToWin,
+      height: height,
+      width: width,
+      names: names.slice(0, -1).join(","),
+      countToWin: countToWin,
     });
 
     navigate({
@@ -51,45 +45,64 @@ export default function CreateNewGame() {
 
       <div className={styles.formContainer}>
         <form onSubmit={handleSubmit}>
-          <label htmlFor="height">Высота</label>
-          <input
-            type="number"
-            id="height"
-            name="height"
-            value={formData.height}
-            onChange={handleChange}
-            min="1"
-          />
+          <h2>Параметры поля</h2>
+          <hr />
+          <div className={styles.params}>
+            <label htmlFor="height">Высота</label>
+            <input
+              type="number"
+              id="height"
+              name="height"
+              value={height}
+              onChange={(e) => setHeight(e.target.value)}
+              min="1"
+            />
+            <label htmlFor="width">Ширина</label>
+            <input
+              type="number"
+              id="width"
+              name="width"
+              value={width}
+              onChange={(e) => setWidth(e.target.value)}
+              min="1"
+              max="10"
+            />
+            <label htmlFor="countToWin">Нужно для победы</label>
+            <input
+              type="number"
+              id="countToWin"
+              name="countToWin"
+              value={countToWin}
+              onChange={(e) => setCountToWin(e.target.value)}
+              min="1"
+            />
+          </div>
+          <h2>Игроки</h2>
+          <hr />
 
-          <label htmlFor="width">Ширина</label>
-          <input
-            type="number"
-            id="width"
-            name="width"
-            value={formData.width}
-            onChange={handleChange}
-            min="1"
-            max="10"
-          />
-
-          <label htmlFor="countToWin">Нужно для победы</label>
-          <input
-            type="number"
-            id="countToWin"
-            name="countToWin"
-            value={formData.countToWin}
-            onChange={handleChange}
-            min="1"
-          />
-
-          <label htmlFor="names">Имена игроков через запятую</label>
-          <input
-            type="text"
-            id="names"
-            name="names"
-            value={formData.names}
-            onChange={handleChange}
-          />
+          <div className={styles.namesInputs}>
+            {names.map((name, i) => {
+              return (
+                <div
+                  key={i}
+                  className={clsx(styles.nameInput, 
+                    i === names.length - 1 && styles.nameInputLast
+                  )}
+                >
+                  <label htmlFor={`name${i}`}>Игрок {i + 1}</label>
+                  <input
+                    type="text"
+                    id={`name${i}`}
+                    name={`name${i}`}
+                    value={name}
+                    maxLength={3}
+                    onChange={(e) => handleNameChange(i, e.target.value)}
+                    placeholder="Введите до 3 символов"
+                  />
+                </div>
+              );
+            })}
+          </div>
 
           <button type="submit">Начать игру</button>
         </form>

@@ -1,19 +1,36 @@
+main > hr {
+  margin-bottom: var(--margin-bottom-default);
+}
+
 .formContainer {
   background-color: var(--color-surface);
   border: var(--border-width-default) transparent solid;
   border-radius: var(--border-radius-default);
 }
 
-.formContainer form {
+.formContainer form .params {
   display: grid;
-  /* Первый столбец: от ширины контента до 10rem. Второй: всё остальное */
+  margin-top: var(--margin-top-default);
+  margin-bottom: var(--margin-bottom-default);
   grid-template-columns: minmax(max-content, 10rem) 1fr;
   gap: var(--gap-default);
-  align-items: center; /* Центрирует label по вертикали относительно input */
+  align-items: center;
+}
+
+.formContainer form hr {
+  grid-column: 1 / -1;
+}
+.formContainer form h2 {
+  grid-column: 1 / -1;
+  width: 100%;
+  text-align: center;
+  margin-top: var(--margin-top-default);
+}
+.formContainer form:first-child h2 {
+  margin-top: 0;
 }
 
 .formContainer label {
-  /* Чтобы текст не вылезал за 10rem, а переносился или обрезался */
   word-wrap: break-word;
 }
 
@@ -23,7 +40,7 @@
   padding: var(--padding-default);
   border-style: none;
   border-radius: var(--border-radius-default);
-  width: 100%; /* Чтобы input занимал всю ширину своей колонки */
+  width: 100%;
 }
 
 .formContainer input::placeholder {
@@ -32,10 +49,29 @@
 }
 
 .formContainer button[type="submit"] {
-  grid-column: 1 / -1; /* Растягивает кнопку на оба столбца */
+  width: 100%;
   background-color: var(--color-secondary);
   color: var(--color-on-secondary);
   border: var(--border-width-default) transparent solid;
   border-radius: var(--border-radius-default);
   text-align: center;
+  margin-top: var(--margin-top-default);
+}
+
+.namesInputs {
+  display: grid;
+  margin-top: var(--margin-top-default);
+  margin-bottom: var(--margin-bottom-default);
+  grid-template-columns: 1fr 1fr;
+  gap: var(--gap-default);
+  align-items: center;
+}
+
+.nameInput {
+  display: flex;
+  gap: var(--gap-default);
+}
+
+.nameInputLast {
+  opacity: 0.75;
 }
