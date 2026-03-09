@@ -85,7 +85,8 @@ export default function CreateNewGame() {
               return (
                 <div
                   key={i}
-                  className={clsx(styles.nameInput, 
+                  className={clsx(
+                    styles.nameInput,
                     i === names.length - 1 && styles.nameInputLast
                   )}
                 >
@@ -96,8 +97,10 @@ export default function CreateNewGame() {
                     name={`name${i}`}
                     value={name}
                     maxLength={3}
+                    minLength={1}
                     onChange={(e) => handleNameChange(i, e.target.value)}
                     placeholder="Введите до 3 символов"
+                    required={i === 0}
                   />
                 </div>
               );
