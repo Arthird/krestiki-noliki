@@ -1,34 +1,5 @@
-@media (min-width: 641px) {
-  .mainContainer {
-    margin: 0 1rem;
-  }
-}
-@media (max-width: 641px) {
-  .mainContainer {
-    margin: 0 0.5rem;
-  }
-}
-
-main {
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  background-color: var(--color-background);
-}
-
-h1,
-p {
-  color: var(--color-on-background);
+.gameDescription {
   margin-bottom: var(--margin-bottom-default);
-}
-
-hr {
-  border-color: var(--color-primary);
-}
-
-.mainContainer {
-  display: flex;
-  flex-direction: column;
 }
 
 .gameContainer {
@@ -49,7 +20,7 @@ div.error {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
-
+/* //TODO вынести в отдельный модуль всё что ниже*/
 .actionsContainer {
   display: flex;
   gap: var(--gap-default);
@@ -62,7 +33,7 @@ div.error {
   border-width: var(--border-width-default);
   border-style: solid;
   border-color: transparent;
-  
+
   color: var(--color-on-primary);
 
   display: flex;
@@ -84,4 +55,3 @@ div.error {
 .actionsContainer:is([data-error="true"]) > button {
   border-radius: 0;
 }
-

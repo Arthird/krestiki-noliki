@@ -3,7 +3,7 @@ import styles from "./Popup.module.css";
 import type { PopupAction } from "../model/PopupAction";
 import { useEffect, useRef } from "react";
 
-type PopupPrpos = {
+type PopupProps = {
   children: React.ReactNode;
   actions: PopupAction[];
   isOpen: boolean;
@@ -15,7 +15,7 @@ export default function Popup({
   className,
   children,
   isOpen,
-}: PopupPrpos) {
+}: PopupProps) {
   const dialogRef = useRef<HTMLDialogElement>(null);
 
   useEffect(() => {

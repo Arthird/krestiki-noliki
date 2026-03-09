@@ -1,0 +1,41 @@
+.formContainer {
+  background-color: var(--color-surface);
+  border: var(--border-width-default) transparent solid;
+  border-radius: var(--border-radius-default);
+}
+
+.formContainer form {
+  display: grid;
+  /* Первый столбец: от ширины контента до 10rem. Второй: всё остальное */
+  grid-template-columns: minmax(max-content, 10rem) 1fr;
+  gap: var(--gap-default);
+  align-items: center; /* Центрирует label по вертикали относительно input */
+}
+
+.formContainer label {
+  /* Чтобы текст не вылезал за 10rem, а переносился или обрезался */
+  word-wrap: break-word;
+}
+
+.formContainer input {
+  background-color: var(--color-secondary);
+  color: var(--color-on-secondary);
+  padding: var(--padding-default);
+  border-style: none;
+  border-radius: var(--border-radius-default);
+  width: 100%; /* Чтобы input занимал всю ширину своей колонки */
+}
+
+.formContainer input::placeholder {
+  color: var(--color-on-secondary);
+  opacity: 0.5;
+}
+
+.formContainer button[type="submit"] {
+  grid-column: 1 / -1; /* Растягивает кнопку на оба столбца */
+  background-color: var(--color-secondary);
+  color: var(--color-on-secondary);
+  border: var(--border-width-default) transparent solid;
+  border-radius: var(--border-radius-default);
+  text-align: center;
+}

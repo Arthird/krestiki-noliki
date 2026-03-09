@@ -2,9 +2,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border-style: solid;
   aspect-ratio: 1;
   width: 100%;
+  border-width: calc(var(--border-width-default) / 2);
   background-color: var(--color-secondary);
   border-color: var(--color-stroke);
   color: var(--color-on-secondary);

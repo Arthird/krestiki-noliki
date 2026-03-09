@@ -15,11 +15,11 @@ const router = createBrowserRouter([
       const height = parseInt(url.searchParams.get("height") || "3");
       const width = parseInt(url.searchParams.get("width") || "3");
       const countToWin = parseInt(url.searchParams.get("countToWin") || "3");
-      const acceptableCellValues = url.searchParams
-        .get("values")
+      const names = url.searchParams
+        .get("names")
         ?.split(",") || ["X", "O"];
 
-      return { height, width, acceptableCellValues, countToWin };
+      return { height, width, names, countToWin };
     },
   },
 ]);

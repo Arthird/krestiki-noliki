@@ -7,16 +7,17 @@ import WinnerPopup from "../../widgets/winnerPopup/WinnerPopup";
 import DrawPopup from "../../widgets/drawPopup/DrawPopup";
 import { useLoaderData, useNavigate } from "react-router-dom";
 
-type KrestikiNolikiProps = {
+type KrestikiNolikiLoaderData = {
   height: number;
   width: number;
-  acceptableCellValues: CellValue[];
+  names: CellValue[];
   countToWin: number;
 };
 
 export default function KrestikiNoliki() {
-  const { height, width, acceptableCellValues, countToWin } =
-    useLoaderData() as KrestikiNolikiProps;
+  const { height, width, names, countToWin } =
+    useLoaderData() as KrestikiNolikiLoaderData;
+  
   const {
     matrix,
     errorMessage,
@@ -25,7 +26,7 @@ export default function KrestikiNoliki() {
     winningSeries,
     handleCellClick,
     resetGame,
-  } = useKrestikiNoliki({ height, width, acceptableCellValues, countToWin });
+  } = useKrestikiNoliki({ height, width, names, countToWin });
   const navigate = useNavigate();
 
   const newGame = () => {
@@ -34,35 +35,32 @@ export default function KrestikiNoliki() {
 
   return (
     <main>
-      <div className={styles.mainContainer}>
-        <h1>Крестики нолики</h1> {/*// TODO Заменить на хедер*/}
-        <hr />
-        <p>
-          Это игра где игроки играют и один из них выигрывает, но не всегда —
-          иногда ничья. Лично я обычно выигрываю, но насчёт вас не знаю 😄
-        </p>
-        <div className={styles.gameContainer}>
-          <Field
-            matrix={matrix}
-            onCellClick={handleCellClick}
-            matrixClassName={styles.matrix}
-            winningSeries={winningSeries}
-          />
-        </div>
-        <div className={styles.actionsContainer} data-error={!!errorMessage}>
-          <button onClick={resetGame}>Начать игру заново</button>
-          <button onClick={newGame}>Настроить новую игру</button>
-        </div>
-        <ErrorMessage visible={!!errorMessage} className={styles.error}>
-          {errorMessage}
-        </ErrorMessage>
-        <DrawPopup isDraw={isDraw} resetGame={resetGame} createGame={newGame} />
-        <WinnerPopup
-          winner={winner}
-          resetGame={resetGame}
-          createGame={newGame}
+      <h1>Крестики нолики</h1> {/*// TODO Заменить на хедер*/}
+      <hr />
+      <p className={styles.gameDescription}>
+        Это игра где игроки играют и один из них выигрывает, но не всегда —
+        иногда ничья. Лично я обычно выигрываю, но насчёт вас не знаю 😄
+      </p>
+      <div className={styles.gameContainer}>
+        <Field
+          matrix={matrix}
+          onCellClick={handleCellClick}
+          matrixClassName={styles.matrix}
+          winningSeries={winningSeries}
         />
       </div>
+      {/*// TODO Вынести в отдельный компонет, посмотреть, можно 
+           // TODO ли объединить этот actionContainer с тем, что в попапе*/}
+      <div className={styles.actionsContainer} data-error={!!errorMessage}>
+        {/*Надо сделать пропсом*/}
+        <button onClick={resetGame}>Начать игру заново</button>
+        <button onClick={newGame}>Настроить новую игру</button>
+      </div>
+      <ErrorMessage visible={!!errorMessage} className={styles.error}>
+        {errorMessage}
+      </ErrorMessage>
+      <DrawPopup isDraw={isDraw} resetGame={resetGame} createGame={newGame} />
+      <WinnerPopup winner={winner} resetGame={resetGame} createGame={newGame} />
     </main>
   );
 }

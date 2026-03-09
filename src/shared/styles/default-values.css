@@ -1,7 +1,13 @@
 :root {
   --border-radius-default: 1rem;
+  --border-radius-inside: 0.75rem;
+
   --border-width-default: 1rem;
+
+  --padding-default: 0.5rem;
+
   --gap-default: 0.4rem;
   --margin-bottom-default: 0.4rem;
+
   --animation-time-short: 0.4s;
 }

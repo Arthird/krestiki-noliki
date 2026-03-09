@@ -1,6 +1,24 @@
 @import "./shared/styles/colors.css";
 @import "./shared/styles/default-values.css";
 
+@media (min-width: 641px) {
+  main {
+    margin: 0 1rem;
+  }
+}
+@media (max-width: 640px) {
+  main {
+    margin: 0 0.5rem;
+  }
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 1024px;
+}
+
 *,
 *::before,
 *::after {
@@ -19,26 +37,69 @@ body,
 :root {
   color: var(--color-on-background);
   background-color: var(--color-background);
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
 }
 
-hr {
-  border-style: solid;
+#root {
+  display: flex;
+  justify-content: center;
+}
+
+button,
+input {
+  transition: all var(--animation-time-short) ease; 
+}
+
+button:focus,
+input:focus {
+  /*//TODO */
 }
 
 button {
   all: unset;
   display: inline-block;
   box-sizing: border-box;
+
   cursor: pointer;
+
+  line-height: 1;
+
+  font: inherit;
+
+  border-width: var(--border-width-default);
+  border-style: solid;
+  border-color: transparent;
 }
 
 button:hover {
   opacity: 0.9;
 }
 
-button:focus {
+input {
   outline: none;
+}
+
+/* Для WebKit браузеров (Chrome, Safari, Edge) */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+}
+
+/* Для Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+hr {
+  border-style: solid;
+  border-color: var(--color-primary);
+  margin: 0.1rem 0;
+}
+
+h1,
+p {
+  color: var(--color-on-background);
 }
 
 @font-face {
@@ -52,8 +113,8 @@ button:focus {
 }
 
 @font-face {
-  font-family: 'Inter';
-  src: url('./assets/fonts/Inter.ttf') format('truetype');
+  font-family: "Inter";
+  src: url("./assets/fonts/Inter.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }

@@ -20,7 +20,7 @@ export default function Error({ children, visible, className }: ErrorProps) {
       className={clsx(
         styles.errorContainer,
         visible ? styles.visibleError : styles.hiddenError,
-        className,
+        className
       )}
     >
       <span className={styles.errorText}>{lastChildren}</span>

@@ -8,14 +8,14 @@ import SeriesFinderWorker from "../../widgets/field/api/SeriesFinderWorker?worke
 type UseKrestikiNolikiProps = {
   height: number;
   width: number;
-  acceptableCellValues: CellValue[];
+  names: CellValue[];
   countToWin: number;
 };
 
 export function useKrestikiNoliki({
   height,
   width,
-  acceptableCellValues,
+  names,
   countToWin,
 }: UseKrestikiNolikiProps) {
   const [errorMessage, setErrorMessage] = useState<string>();
@@ -62,7 +62,7 @@ export function useKrestikiNoliki({
     };
   }, [height, width]);
 
-  const currentTurn = movesCount % acceptableCellValues.length;
+  const currentTurn = movesCount % names.length;
 
   const resetMatrix = () => {
     matrixRef.current = createRectangularArray(width, height, "");
@@ -79,7 +79,7 @@ export function useKrestikiNoliki({
   };
 
   const handleCellClick = (rowIndex: number, cellIndex: number) => {
-    const value = acceptableCellValues[currentTurn];
+    const value = names[currentTurn];
 
     try {
       if (isDraw || !!winner) {
