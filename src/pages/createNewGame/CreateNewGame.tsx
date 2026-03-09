@@ -56,6 +56,7 @@ export default function CreateNewGame() {
               value={height}
               onChange={(e) => setHeight(e.target.value)}
               min="1"
+              max="10"
             />
             <label htmlFor="width">Ширина</label>
             <input
@@ -75,6 +76,7 @@ export default function CreateNewGame() {
               value={countToWin}
               onChange={(e) => setCountToWin(e.target.value)}
               min="1"
+              max="10"
             />
           </div>
           <h2>Игроки</h2>
