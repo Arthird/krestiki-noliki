@@ -1,20 +1,41 @@
 import { useNavigate } from "react-router-dom";
 import styles from "./CreateNewGame.module.css";
+import { useState } from "react";
+
+type FormData = {
+  height: string;
+  width: string;
+  countToWin: string;
+  names: string;
+};
 
 export default function CreateNewGame() {
+  const [formData, setFormData] = useState<FormData>({
+    height: "3",
+    width: "3",
+    countToWin: "3",
+    names: "X,O",
+  });
+
   const navigate = useNavigate();
 
-  const handleSubmit = (formData: FormData) => {
-    const height = formData.get("height");
-    const width = formData.get("width");
-    const names = formData.get("names");
-    const countToWin = formData.get("countToWin");
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = (e: React.SubmitEvent) => {
+    e.preventDefault();
 
     const searchParams = new URLSearchParams({
-      height: String(height),
-      width: String(width),
-      names: String(names),
-      countToWin: String(countToWin),
+      height: formData.height,
+      width: formData.width,
+      names: formData.names,
+      countToWin: formData.countToWin,
     });
 
     navigate({
@@ -25,51 +46,51 @@ export default function CreateNewGame() {
 
   return (
     <main>
-      <h1>Создание новой игры</h1> {/*//TODO добавить лого */}
+      <h1>Создание новой игры</h1>
       <hr />
-      {/*
-          // TODO другой механизм добавления игроков (значений)
-        */}
+
       <div className={styles.formContainer}>
-        <form action={handleSubmit}>
-          <label htmlFor="height">
-            Высота
-          </label>
+        <form onSubmit={handleSubmit}>
+          <label htmlFor="height">Высота</label>
           <input
             type="number"
             id="height"
             name="height"
-            placeholder="Высота"
-            defaultValue="3"
+            value={formData.height}
+            onChange={handleChange}
             min="1"
           />
+
           <label htmlFor="width">Ширина</label>
           <input
             type="number"
             id="width"
             name="width"
-            placeholder="Ширина"
-            defaultValue="3"
+            value={formData.width}
+            onChange={handleChange}
             min="1"
             max="10"
           />
+
           <label htmlFor="countToWin">Нужно для победы</label>
           <input
             type="number"
             id="countToWin"
             name="countToWin"
-            placeholder="Нужно для победы"
-            defaultValue="3"
+            value={formData.countToWin}
+            onChange={handleChange}
             min="1"
           />
+
           <label htmlFor="names">Имена игроков через запятую</label>
           <input
             type="text"
             id="names"
             name="names"
-            placeholder="X,O"
-            defaultValue="X,O"
+            value={formData.names}
+            onChange={handleChange}
           />
+
           <button type="submit">Начать игру</button>
         </form>
       </div>

@@ -52,7 +52,7 @@ input {
 
 button:focus,
 input:focus {
-  /*//TODO */
+  opacity: 0.9;
 }
 
 button {
