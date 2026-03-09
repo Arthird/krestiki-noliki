@@ -16,12 +16,12 @@ type KrestikiNolikiLoaderData = {
 };
 
 export default function KrestikiNoliki() {
-  const LoaderData = useLoaderData() as KrestikiNolikiLoaderData;
+  const loaderData = useLoaderData() as KrestikiNolikiLoaderData;
   const [height, width, names, countToWin] = [
-    Math.min(LoaderData.height, 10),
-    Math.min(LoaderData.width, 10),
-    LoaderData.names,
-    Math.min(LoaderData.countToWin, 10),
+    Math.min(loaderData.height, 10),
+    Math.min(loaderData.width, 10),
+    loaderData.names,
+    Math.min(loaderData.countToWin, 10),
   ];
 
   const {
