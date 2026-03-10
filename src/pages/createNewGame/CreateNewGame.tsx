@@ -38,6 +38,8 @@ export default function CreateNewGame() {
     });
   };
 
+  const maxCountToWin = Math.max(+height, +width)
+
   return (
     <main>
       <h1>Создание новой игры</h1>
@@ -55,6 +57,7 @@ export default function CreateNewGame() {
               name="height"
               value={height}
               onChange={(e) => setHeight(e.target.value)}
+              placeholder="Введите число от 1 до 10"
               min="1"
               max="10"
             />
@@ -65,6 +68,7 @@ export default function CreateNewGame() {
               name="width"
               value={width}
               onChange={(e) => setWidth(e.target.value)}
+              placeholder="Введите число от 1 до 10"
               min="1"
               max="10"
             />
@@ -75,8 +79,9 @@ export default function CreateNewGame() {
               name="countToWin"
               value={countToWin}
               onChange={(e) => setCountToWin(e.target.value)}
+              placeholder="Введите число от 1 до 10"
               min="1"
-              max="10"
+              max={maxCountToWin}
             />
           </div>
           <h2>Игроки</h2>

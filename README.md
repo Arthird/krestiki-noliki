@@ -1,6 +1,6 @@
 # Krestiki-noliki React App
 
-Сайт, реализующий классическую игру "Крестики-нолики" с использованием React и Vite.
+Сайт, реализующий классическую игру "Крестики-нолики" с использованием React и Vite с некоторыми доп. функциями
 <img width="1076" height="442" alt="image" src="https://github.com/user-attachments/assets/0a1123e6-b53c-45a9-81c1-3a26139c7a25" />
 <img width="1275" height="996" alt="image" src="https://github.com/user-attachments/assets/d612dbe6-2f29-4c51-9ce6-b03ad5ea927d" />
 
